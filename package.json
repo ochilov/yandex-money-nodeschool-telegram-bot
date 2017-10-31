@@ -1,0 +1,24 @@
+{
+  "name": "njs-telegram-bot",
+  "version": "0.0.1",
+  "description": "Telegram bot to handle YaMoney API`s",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ochilov/yandex-money-nodeschool-telegram-bot.git"
+  },
+  "author": "u.a.ochilov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ochilov/yandex-money-nodeschool-telegram-bot/issues"
+  },
+  "homepage": "https://github.com/ochilov/yandex-money-nodeschool-telegram-bot#readme",
+  "dependencies": {
+    "config": "^1.27.0",
+    "node-telegram-bot-api": "^0.29.0"
+  }
+}
