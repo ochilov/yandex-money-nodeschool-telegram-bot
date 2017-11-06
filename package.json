@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/ochilov/yandex-money-nodeschool-telegram-bot#readme",
   "dependencies": {
+    "axios": "^0.17.0",
+    "card-info": "^1.2.4",
     "config": "^1.27.0",
     "extra": "^0.2.1",
     "helpers": "0.0.6",
