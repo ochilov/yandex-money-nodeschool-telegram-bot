@@ -16,8 +16,8 @@ const telegramMenu = new TelegramMenu()
 
 //bot.use(Telegraf.log())
 bot.command('start', async (ctx) => {
-	return ctx.reply('Приветствую', Markup
-		.keyboard('Меню', 'Инфо', 'Выйти')
+	return ctx.reply(`Привет ${ctx.update.message.chat.first_name}. \nДля начала работы нажми на кнопку "МЕНЮ" или введи команду "\/menu"`, Markup
+		.keyboard(['Меню', 'Инфо'])
 		.oneTime()
 		.resize()
 		.extra()
