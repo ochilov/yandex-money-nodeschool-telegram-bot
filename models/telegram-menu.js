@@ -157,29 +157,32 @@ class TelegramMenu {
 			const buttons = [];
 			const card = user.cards.find((item) => item.id === cardId);
 			if (card !== null) {
-				const link = `${config.server}/cards/${card.id}/transactions/`;
+				//const link = `${config.server}/cards/${card.id}/transactions/`; // т.к. реализация возвращает только одну историю, нам она не нужна
+				const link = `${config.server}/transactions/`;
 				await axios.get(link)
 					.then(function (response) {
 						status = 201;
-						const maxHistory = 10;	
 						const buttons = [];
 						let data = [];	//храним ответку в тодельном массиве, т.к. при условии, что в выборке имеется только один пункт, то возвращается не массив, а сам объект
 						if (response.data !== null && response.data !== undefined) {
 							if (Object.prototype.hasOwnProperty.call(response.data, 'length')) {
-								data = response.data;
+								data = response.data.filter((transaction) => transaction.cardId === card.id);
 							}
-							else {
-								data.push(response.data);
+							else if (Object.prototype.hasOwnProperty.call(response.data, 'cardId')) {
+								if (response.data.cardId == card.id)
+									data.push(response.data);
 							}
 						}
-						for (let i = 0, count = data.length; i < count; ++i) {
+						const maxHistory = 10;	
+						const startIndex = (data.length > maxHistory) ? data.length - maxHistory : 0;
+						for (let i = startIndex, count = data.length; i < count; ++i) {
 							const item = data[i];
 							let operation = '';
 							switch(item.type) {
-								case 'paymentMobile': {operation = `Оплата мобильной связи\n ${item.data}`; break;}
-								case 'card2Card'	: {operation = `Перевод на карту\n ${item.data}`; break;}
-								case 'prepaidCard'	: {operation = `Оплата с карты\n ${item.data}`; break;}
-								default 			: {operation = item.type + ', ' + item.data;}
+								case 'paymentMobile': {operation = `Оплата мобильной связи \n${item.data}`; break;}
+								case 'card2Card'	: {operation = `Перевод на карту \n${item.data}`; break;}
+								case 'prepaidCard'	: {operation = `Оплата с карты \n${item.data}`; break;}
+								default 			: {operation = `Операция ${item.type} \n${item.data}`;}
 							}
 							text += '\n' + operation;
 							text += `\nСумма: ${item.sum} руб`;
