@@ -12,8 +12,8 @@ const axios = require('axios');
 
 // библиотека для работы с ботом
 const Telegraf = require('telegraf')
-const Extra = require('telegraf/lib/helpers/extra')
-const Markup = require('telegraf/lib/helpers/markup')
+const Extra = require('telegraf//extra')
+const Markup = require('telegraf/markup')
 
 class TelegramMenu {
 	//=========================================================================

@@ -6,8 +6,8 @@ const TelegramMenu = require('./models/telegram-menu');
 
 // библиотека для работы с ботом
 const Telegraf = require('telegraf')
-const Extra = require('telegraf/lib/helpers/extra')
-const Markup = require('telegraf/lib/helpers/markup')
+const Extra = require('telegraf/extra')
+const Markup = require('telegraf/markup')
 
 const BOT_TOKEN = config.get('token')
 
